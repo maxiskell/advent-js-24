@@ -4,22 +4,39 @@
  * @returns {string} The reno race
  */
 function drawRace(indices, length) {
-  let result = [];
+  return indices
+    .map((pos, i) => {
+      let lane = Array(length)
+        .fill("~")
+        .with(pos, pos !== 0 ? "r" : "~")
+        .join("");
 
-  let line = [];
-  for (let i = 0; i < indices.length; ++i) {
-    line = Array(length).fill("~");
-
-    if (indices[i] > 0) {
-      line[indices[i]] = "r";
-    } else if (indices[i] < 0) {
-      line[length - Math.abs(indices[i])] = "r";
-    }
-
-    result.push(
-      `${" ".repeat(indices.length - i - 1)}${line.join("")} /${i + 1}`,
-    );
-  }
-
-  return result.join("\n");
+      return `${lane.padStart(length + indices.length - ++i)} /${i}`;
+    })
+    .join("\n");
 }
+const races = [
+  drawRace([0, 5, -3], 10),
+  /*
+  ~~~~~~~~~~ /1
+  ~~~~~r~~~~ /2
+  ~~~~~~~r~~ /3
+  */
+
+  drawRace([2, -1, 0, 5], 8),
+  /*
+  ~~r~~~~~ /1
+  ~~~~~~~r /2
+  ~~~~~~~~ /3
+  ~~~~~r~~ /4
+  */
+
+  drawRace([3, 7, -2], 12),
+  /*
+  ~~~r~~~~~~~~ /1
+  ~~~~~~~~r~~~ /2
+  ~~~~~~~~~r~~ /3
+  */
+];
+
+for (let r of races) console.log(r);
