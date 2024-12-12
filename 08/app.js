@@ -15,28 +15,3 @@ function drawRace(indices, length) {
     })
     .join("\n");
 }
-const races = [
-  drawRace([0, 5, -3], 10),
-  /*
-  ~~~~~~~~~~ /1
-  ~~~~~r~~~~ /2
-  ~~~~~~~r~~ /3
-  */
-
-  drawRace([2, -1, 0, 5], 8),
-  /*
-  ~~r~~~~~ /1
-  ~~~~~~~r /2
-  ~~~~~~~~ /3
-  ~~~~~r~~ /4
-  */
-
-  drawRace([3, 7, -2], 12),
-  /*
-  ~~~r~~~~~~~~ /1
-  ~~~~~~~~r~~~ /2
-  ~~~~~~~~~r~~ /3
-  */
-];
-
-for (let r of races) console.log(r);
