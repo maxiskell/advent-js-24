@@ -4,53 +4,24 @@
  * @returns {'none' | 'crash' | 'eat'}
  */
 function moveTrain(board, mov) {
-  let nextx = 0;
-  let nexty = 0;
+  let resultMap = {
+    "·": "none",
+    "*": "eat",
+    o: "crash",
+    undefined: "crash",
+  };
 
-  for (let y = 0; y < board.length; y++) {
-    let x = board[y].indexOf("@");
-    if (x === -1) {
-      continue;
-    }
+  let y = board.findIndex((row) => row.includes("@"));
+  let x = board[y].indexOf("@");
 
-    nextx = x;
-    nexty = y;
-  }
+  let nextPositions = {
+    U: [x, y - 1],
+    D: [x, y + 1],
+    L: [x - 1, y],
+    R: [x + 1, y],
+  };
 
-  switch (mov) {
-    case "U":
-      nexty -= 1;
-      break;
-    case "D":
-      nexty += 1;
-      break;
-    case "L":
-      nextx -= 1;
-      break;
-    case "R":
-      nextx += 1;
-      break;
-    default:
-      break;
-  }
+  let [nextx, nexty] = nextPositions[mov];
 
-  // out of bound
-  if (
-    nextx < 0 ||
-    nexty < 0 ||
-    nexty >= board.length ||
-    nextx >= board[nexty].length ||
-    board[nexty][nextx] === "0"
-  ) {
-    return "crash";
-  }
-
-  switch (board[nexty][nextx]) {
-    case "o":
-      return "crash";
-    case "*":
-      return "eat";
-    default:
-      return "none";
-  }
+  return resultMap[board[nexty]?.[nextx]];
 }
