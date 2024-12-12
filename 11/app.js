@@ -3,5 +3,5 @@
  * @returns {string} The decoded filename.
  */
 function decodeFilename(filename) {
-  return filename.match(/(\d+\_)([a-zA-Z-_]+\.[a-zA-Z-_]+)/)?.[2];
+  return filename.match(/_([\w-]+\.\w+)/)[1];
 }
