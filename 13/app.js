@@ -66,34 +66,3 @@ function isRobotBack(moves) {
 
   return true;
 }
-
-let tests = [
-  // isRobotBack("R"), // [1, 0]
-  // isRobotBack("RL"), // true
-  // isRobotBack("RLUD"), // true
-  isRobotBack("*RU"), // [2, 1]
-  // isRobotBack("R*U"), // [1, 2]
-  // isRobotBack("LLL!R"), // [-4, 0]
-  // isRobotBack("R?R"), // [1, 0]
-  // isRobotBack("U?D"), // true
-  // isRobotBack("R!L"), // [2,0]
-  // isRobotBack("U!D"), // [0,2]
-  // isRobotBack("R?L"), // true
-  // isRobotBack("U?U"), // [0,1]
-  // isRobotBack("*U?U"), // [0,2]
-  // isRobotBack("U?D?U"), // true
-  //
-  // // Step-by-step examples:
-  // isRobotBack("R!U?U"), // [1,0]
-  // 'R'  -> moves to the right
-  // '!U' -> inverts and becomes 'D'
-  // '?U' -> moves upwards, because the 'U' movement hasn't been done yet
-
-  // isRobotBack("UU!U?D"), // [0,1]
-  // 'U'  -> moves upwards
-  // 'U'  -> moves upwards
-  // '!U' -> inverts and becomes 'D'
-  // '?D' -> does not move, since the 'D' movement has already been done
-];
-
-for (let t of tests) console.log(t);
